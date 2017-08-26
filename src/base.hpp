@@ -9,8 +9,6 @@
 #ifndef base_hpp
 #define base_hpp
 
-#include <stdio.h>
-
 
 #define SUCCESS     -1
 #define ERROR         -2
