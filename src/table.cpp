@@ -116,18 +116,12 @@ bool Table::isValidChar(char c)
 
 void Table::setVal(int row, int column, char value)
 {
-    matrix[row + column*dim].c = value;
+    matrix[row + column*dim] = value;
 }
 
 
 char Table::getVal(int row, int column)
 {
-    return matrix[row + column*dim].c;
+    return matrix[row + column*dim];
 }
 
-
-void Table::resetTable()
-{
-    for (int i = 0; i < dim*dim; i++)
-        matrix[i].seen = false;
-}
