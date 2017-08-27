@@ -74,6 +74,7 @@ void Table::stringBuilder(vector<char> word, Coordinates coords)
         return;
     }
     
+    /* Call stringBuilder on every valid letter */
     for (int i = 0; i < all_possible.size(); i++)
         stringBuilder(word, all_possible[i]);
 }
@@ -131,27 +132,4 @@ vector<Coordinates> Table::findNeighbors(int row, int column)
     return return_list;
 }
 
-
-bool Table::borderCheck(int row, int column)
-{
-    return (row >= 0 && row < dim && column >= 0 && column < dim);
-}
-
-
-bool Table::isValidChar(char c)
-{
-    return (c >= 'a' && c <= 'z') ? true : false;
-}
-
-
-void Table::setVal(int row, int column, char value)
-{
-    matrix[row + column*dim] = value;
-}
-
-
-char Table::getVal(int row, int column)
-{
-    return matrix[row + column*dim];
-}
 
