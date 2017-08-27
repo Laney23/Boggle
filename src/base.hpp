@@ -12,6 +12,9 @@
 
 #define SUCCESS     -1
 #define ERROR         -2
+#define CONTINUE   0
+#define FINISHED     1
+#define NONE           -1
 
 
 #endif /* base_hpp */
