@@ -10,10 +10,6 @@
 
 using namespace std;
 
-static bool isValidChar(char c);
-static char findNeighbor(int row, int column);
-static bool borderCheck(int row, int column, int dim);
-
 
 int Table::addTable()
 {
@@ -91,25 +87,30 @@ char Table::findNeighbor(int row, int column)
     return '1';
 }
 
-static bool borderCheck(int row, int column, int dim)
+
+bool Table::borderCheck(int row, int column, int dim)
 {
     return (row >= 0 && row <= dim && column >= 0 && column < dim);
 }
 
-static bool isValidChar(char c)
+
+bool Table::isValidChar(char c)
 {
     return (c >= 'a' && c <= 'z') ? true : false;
 }
+
 
 void Table::setVal(int row, int column, char value)
 {
     matrix[row + column*dim].c = value;
 }
 
+
 char Table::getVal(int row, int column)
 {
     return matrix[row + column*dim].c;
 }
+
 
 void Table::resetTable()
 {

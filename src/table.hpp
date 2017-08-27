@@ -27,11 +27,15 @@ struct Coordinates {
 class Table {
     int dim;
     Element *matrix;
-    char findNeighbor(int row, int column);
+    std::vector<std::string> *word_list;
+    Coordinates findNeighbor(int row, int column);
     void resetTable();
+    int stringBuilder(std::string *str, Coordinates coords);
+    bool isValidChar(char c);
+    bool borderCheck(int row, int column, int dim);
     
 public:
-    Table(int dimension) { dim = dimension; matrix = new Element[dimension*dimension]; }
+    Table(int dimension) { dim = dimension; matrix = new Element[dimension*dimension]; word_list = new std::vector<std::string>(); }
     ~Table() { delete[] matrix; }
     int addTable();
     void setVal(int row, int column, char value);
