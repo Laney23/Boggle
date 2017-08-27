@@ -82,6 +82,32 @@ void Table::stringBuilder(vector<char> word, Coordinates coords)
     for (int i = 0; i < all_possible.size(); i++)
         stringBuilder(word, all_possible[i]);
 }
+
+
+bool sorter(const string& a, const string& b)
+{
+    return ((a.size() < b.size()) );
+}
+
+
+void Table::print()
+{
+    /* Sort by length alphabetically */
+    struct compare {
+        bool operator()(const std::string& first, const std::string& second) {
+            return first.size() < second.size();
+        }
+    };
+    compare c;
+    sort(word_list.begin(), word_list.end());
+    stable_sort(word_list.begin(), word_list.end(), c);
+    
+    /* Print all words */
+    for (int i = 0; i < word_list.size(); i++)
+        cout << word_list[i] << endl;
+}
+
+
 vector<Coordinates> Table::findNeighbors(int row, int column)
 {
     vector<Coordinates> return_list;

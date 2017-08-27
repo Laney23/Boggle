@@ -37,6 +37,7 @@ public:
     int findAllWords();
     void setVal(int row, int column, char value);
     char getVal(int row, int column);
+    void print();
 };
 
 #endif /* table_hpp */
