@@ -58,9 +58,6 @@ int main(int argc, const char * argv[]) {
             cout << "You must enter a non negative dimension between 0 and 20.\n";
             return ERROR;
         }
-        else if (dimension == 0)
-            //TODO: handle this case
-            return SUCCESS;
     
         /* Take in the matrix */
         cin.ignore();
@@ -81,7 +78,8 @@ int main(int argc, const char * argv[]) {
     
     /* Print all tables */
     for (int i = 0; i < tables.size(); i++) {
-        cout << endl;
+        if (tables[i].getDim() > 0)
+            cout << endl;
         tables[i].print();
     }
     return 0;

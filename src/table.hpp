@@ -39,6 +39,7 @@ public:
     void setVal(int row, int column, char value);
     char getVal(int row, int column);
     void print();
+    int getDim() { return dim; }
 };
 
 #endif /* table_hpp */
