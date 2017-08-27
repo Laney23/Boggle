@@ -34,9 +34,6 @@ int Table::addTable()
         row++;
     }
     
-    /* Initialize all values to unseen */
-    resetTable();
-    
     return SUCCESS;
 }
 
@@ -51,8 +48,6 @@ int Table::findAllWords()
 
         /* Call stringBuilder on every position in the matrix */
         stringBuilder(word, {i/dim, i%dim});
-
-        resetTable();
     }
     
     return SUCCESS;
@@ -86,23 +81,22 @@ void Table::stringBuilder(vector<char> word, Coordinates coords)
 
 bool sorter(const string& a, const string& b)
 {
-    return ((a.size() < b.size()) );
+    if (a.length() < b.length())
+        return true;
+    else if (a.length() > b.length())
+        return false;
+    else
+        return a < b;
 }
 
 
 void Table::print()
 {
     /* Sort by length alphabetically */
-    struct compare {
-        bool operator()(const std::string& first, const std::string& second) {
-            return first.size() < second.size();
-        }
-    };
-    compare c;
-    sort(word_list.begin(), word_list.end());
-    stable_sort(word_list.begin(), word_list.end(), c);
-    
+    sort(word_list.begin(), word_list.end(), sorter);
+
     /* Print all words */
+    cout << endl;
     for (int i = 0; i < word_list.size(); i++)
         cout << word_list[i] << endl;
 }
