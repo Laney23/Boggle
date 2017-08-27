@@ -40,51 +40,65 @@ int Table::addTable()
     return SUCCESS;
 }
 
-char Table::findNeighbor(int row, int column)
 {
-    if (borderCheck(row-1, column-1, dim) && matrix[(row-1)+(column-1)*dim].seen == false)
+    return CONTINUE;
+}
+
+
+
+Coordinates Table::findNeighbor(int row, int column)
+{
+    if (borderCheck(row-1, column-1, dim) && matrix[(row-1)+(column-1)*dim].seen == false \
+        && matrix[(row-1)+(column-1)*dim].c > matrix[row + column*dim].c)
     {
         matrix[(row-1)+(column-1)*dim].seen = true;
-        return matrix[(row-1)+(column-1)*dim].c;
+        return { (row-1), (column-1) };
     }
-    else if (borderCheck(row-1, column, dim) && matrix[(row-1)+column*dim].seen == false)
+    else if (borderCheck(row-1, column, dim) && matrix[(row-1)+column*dim].seen == false \
+             && matrix[(row-1)+column*dim].c > matrix[row + column*dim].c)
     {
         matrix[(row-1)+column*dim].seen = true;
-        return matrix[(row-1)+column*dim].c;
+        return { (row-1), column };
     }
-    else if (borderCheck(row-1, column+1, dim) && matrix[(row-1)+(column+1)*dim].seen == false)
+    else if (borderCheck(row-1, column+1, dim) && matrix[(row-1)+(column+1)*dim].seen == false \
+             && matrix[(row-1)+(column-1)*dim].c > matrix[row + column*dim].c)
     {
-        matrix[(row-1)+(column+1)*dim].seen = true;
-        return matrix[(row-1)+(column+1)*dim].c;
+        matrix[(row-1)+(column-1)*dim].seen = true;
+        return { (row-1), (column+1) };
     }
-    else if (borderCheck(row, column-1, dim) && matrix[row+(column-1)*dim].seen == false)
+    else if (borderCheck(row, column-1, dim) && matrix[row+(column-1)*dim].seen == false \
+             && matrix[row+(column-1)*dim].c > matrix[row + column*dim].c)
     {
         matrix[row+(column-1)*dim].seen = true;
-        return matrix[row+(column-1)*dim].c;
+        return { row, (column-1) };
     }
-    else if (borderCheck(row, column+1, dim) && matrix[row+(column+1)*dim].seen == false)
+    else if (borderCheck(row, column+1, dim) && matrix[row+(column+1)*dim].seen == false \
+             && matrix[row+(column+1)*dim].c > matrix[row + column*dim].c)
     {
         matrix[row+(column+1)*dim].seen = true;
-        return matrix[row+(column+1)*dim].c;
+        return { row, (column+1) };
     }
-    else if (borderCheck(row+1, column-1, dim) && matrix[(row+1)+(column-1)*dim].seen == false)
+    else if (borderCheck(row+1, column-1, dim) && matrix[(row+1)+(column-1)*dim].seen == false \
+             && matrix[(row+1)+(column-1)*dim].c > matrix[row + column*dim].c)
     {
         matrix[(row+1)+(column-1)*dim].seen = true;
-        return matrix[(row+1)+(column-1)*dim].c;
+        return { (row+1), (column-1) };
     }
-    else if (borderCheck(row+1, column, dim) && matrix[(row+1)+column*dim].seen == false)
+    else if (borderCheck(row+1, column, dim) && matrix[(row+1)+column*dim].seen == false \
+             && matrix[(row+1)+column*dim].c > matrix[row + column*dim].c)
     {
         matrix[(row+1)+column*dim].seen = true;
-        return matrix[(row+1)+column*dim].c;
+        return { (row+1), column };
     }
-    else if (borderCheck(row+1, column+1, dim) && matrix[(row+1)+(column+1)*dim].seen == false)
+    else if (borderCheck(row+1, column+1, dim) && matrix[(row+1)+(column+1)*dim].seen == false \
+             && matrix[(row+1)+(column+1)*dim].c > matrix[row + column*dim].c)
     {
         matrix[(row+1)+(column+1)*dim].seen = true;
-        return matrix[(row+1)+(column+1)*dim].c;
+        return { (row+1), (column+1) };
     }
     
-    /* If no unseen neighbors, return the character 1 */
-    return '1';
+    /* If no unseen neighbors, return the coordinates of NONE  */
+    return { NONE, NONE };
 }
 
 
