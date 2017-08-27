@@ -19,6 +19,11 @@ struct Element {
     bool seen;
 };
 
+struct Coordinates {
+    int row;
+    int column;
+};
+
 class Table {
     int dim;
     Element *matrix;
