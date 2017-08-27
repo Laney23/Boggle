@@ -79,7 +79,7 @@ void Table::stringBuilder(vector<char> word, Coordinates coords)
 }
 
 
- bool Table::sorter(const string& a, const string& b)
+bool sorter(const string& a, const string& b)
 {
     if (a.length() < b.length())
         return true;
@@ -96,6 +96,7 @@ void Table::print()
     sort(word_list.begin(), word_list.end(), sorter);
 
     /* Print all words */
+    cout << endl;
     for (int i = 0; i < word_list.size(); i++)
         cout << word_list[i] << endl;
 }
