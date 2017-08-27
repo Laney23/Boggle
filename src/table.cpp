@@ -46,7 +46,6 @@ int Table::addTable()
 
 
 
-Coordinates Table::findNeighbor(int row, int column)
 {
     if (borderCheck(row-1, column-1, dim) && matrix[(row-1)+(column-1)*dim].seen == false \
         && matrix[(row-1)+(column-1)*dim].c > matrix[row + column*dim].c)
@@ -97,8 +96,34 @@ Coordinates Table::findNeighbor(int row, int column)
         return { (row+1), (column+1) };
     }
     
-    /* If no unseen neighbors, return the coordinates of NONE  */
-    return { NONE, NONE };
+vector<Coordinates> Table::findNeighbors(int row, int column)
+{
+    vector<Coordinates> return_list;
+    if (borderCheck(row-1, column-1) && getVal(row-1, column-1) > getVal(row, column))
+        return_list.push_back( { (row-1), (column-1) } );
+    
+    if (borderCheck(row-1, column) && getVal(row-1, column) > getVal(row, column))
+        return_list.push_back( { (row-1), column } );
+    
+    if (borderCheck(row-1, column+1) && getVal(row-1, column+1) > getVal(row, column))
+        return_list.push_back( { (row-1), (column+1) } );
+    
+    if (borderCheck(row, column-1) && getVal(row, column-1) > getVal(row, column))
+        return_list.push_back( { row, (column-1) } );
+    
+    if (borderCheck(row, column+1) && getVal(row, column+1) > getVal(row, column))
+        return_list.push_back( { row, (column+1) } );
+    
+    if (borderCheck(row+1, column-1) && getVal(row+1, column-1) > getVal(row, column))
+        return_list.push_back( { (row+1), (column-1) } );
+    
+    if (borderCheck(row+1, column) && getVal(row+1, column) > getVal(row, column))
+        return_list.push_back( { (row+1), column } );
+    
+    if (borderCheck(row+1, column+1) && getVal(row+1, column+1) > getVal(row, column))
+        return_list.push_back( { (row+1), (column+1) } );
+    
+    return return_list;
 }
 
 
