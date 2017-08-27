@@ -46,56 +46,29 @@ int Table::addTable()
 
 
 
+void Table::stringBuilder(vector<char> word, Coordinates coords)
 {
-    if (borderCheck(row-1, column-1, dim) && matrix[(row-1)+(column-1)*dim].seen == false \
-        && matrix[(row-1)+(column-1)*dim].c > matrix[row + column*dim].c)
+    /* Add letter to array */
+    word.push_back(getVal(coords.row, coords.column));
+    
+    /* Find all possible next letter jumps */
+    vector<Coordinates> all_possible = findNeighbors(coords.row, coords.column);
+    
+    /* if the end of the word has been found and it's more than 2 letters long, add it to the word list */
+    if (all_possible.size() == 0 && word.size() > 2)
     {
-        matrix[(row-1)+(column-1)*dim].seen = true;
-        return { (row-1), (column-1) };
-    }
-    else if (borderCheck(row-1, column, dim) && matrix[(row-1)+column*dim].seen == false \
-             && matrix[(row-1)+column*dim].c > matrix[row + column*dim].c)
-    {
-        matrix[(row-1)+column*dim].seen = true;
-        return { (row-1), column };
-    }
-    else if (borderCheck(row-1, column+1, dim) && matrix[(row-1)+(column+1)*dim].seen == false \
-             && matrix[(row-1)+(column-1)*dim].c > matrix[row + column*dim].c)
-    {
-        matrix[(row-1)+(column-1)*dim].seen = true;
-        return { (row-1), (column+1) };
-    }
-    else if (borderCheck(row, column-1, dim) && matrix[row+(column-1)*dim].seen == false \
-             && matrix[row+(column-1)*dim].c > matrix[row + column*dim].c)
-    {
-        matrix[row+(column-1)*dim].seen = true;
-        return { row, (column-1) };
-    }
-    else if (borderCheck(row, column+1, dim) && matrix[row+(column+1)*dim].seen == false \
-             && matrix[row+(column+1)*dim].c > matrix[row + column*dim].c)
-    {
-        matrix[row+(column+1)*dim].seen = true;
-        return { row, (column+1) };
-    }
-    else if (borderCheck(row+1, column-1, dim) && matrix[(row+1)+(column-1)*dim].seen == false \
-             && matrix[(row+1)+(column-1)*dim].c > matrix[row + column*dim].c)
-    {
-        matrix[(row+1)+(column-1)*dim].seen = true;
-        return { (row+1), (column-1) };
-    }
-    else if (borderCheck(row+1, column, dim) && matrix[(row+1)+column*dim].seen == false \
-             && matrix[(row+1)+column*dim].c > matrix[row + column*dim].c)
-    {
-        matrix[(row+1)+column*dim].seen = true;
-        return { (row+1), column };
-    }
-    else if (borderCheck(row+1, column+1, dim) && matrix[(row+1)+(column+1)*dim].seen == false \
-             && matrix[(row+1)+(column+1)*dim].c > matrix[row + column*dim].c)
-    {
-        matrix[(row+1)+(column+1)*dim].seen = true;
-        return { (row+1), (column+1) };
+        string str;
+        for (auto const& s : word)
+            str += s;
+        
+        word_list.push_back(str);
+
+        return;
     }
     
+    for (int i = 0; i < all_possible.size(); i++)
+        stringBuilder(word, all_possible[i]);
+}
 vector<Coordinates> Table::findNeighbors(int row, int column)
 {
     vector<Coordinates> return_list;

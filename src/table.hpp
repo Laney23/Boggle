@@ -21,11 +21,10 @@ struct Coordinates {
 
 class Table {
     int dim;
-    std::vector<std::string> *word_list;
-    Coordinates findNeighbor(int row, int column);
-    void resetTable();
-    int stringBuilder(std::string *str, Coordinates coords);
     char *matrix;
+    std::vector<std::string> word_list;
+    std::vector<Coordinates> findNeighbors(int row, int column);
+    void stringBuilder(std::vector<char> word, Coordinates coords);
     bool isValidChar(char c);
     bool borderCheck(int row, int column);
     
