@@ -42,37 +42,47 @@ int main(int argc, const char * argv[]) {
         return ERROR;
     }
     
-    /* Take in N, the size of the matrix */
-    int dimension;
-    if (!(cin >> dimension))
-    {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(),'\n');
-        cout<<"You must enter the number of characters on each side of the table.\n";
-        return ERROR;
-    }
-    else if (dimension < 0 || dimension > 20)
-    {
-        cout << "You must enter a non negative dimension between 0 and 20.\n";
-        return ERROR;
-    }
-    else if (dimension == 0)
-        //TODO: handle this case
-        return SUCCESS;
+    vector<Table> tables;
+    while (num_of_cases > 0) {
+        /* Take in N, the size of the matrix */
+        int dimension;
+        if (!(cin >> dimension))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cout<<"You must enter the number of characters on each side of the table.\n";
+            return ERROR;
+        }
+        else if (dimension < 0 || dimension > 20)
+        {
+            cout << "You must enter a non negative dimension between 0 and 20.\n";
+            return ERROR;
+        }
+        else if (dimension == 0)
+            //TODO: handle this case
+            return SUCCESS;
     
-    /* Take in the matrix */
-    cin.ignore();
-    Table *t = new Table(dimension);
-    if (t->addTable() != SUCCESS)
-        return ERROR;
+        /* Take in the matrix */
+        cin.ignore();
+        Table t = Table(dimension);
     
-    /* Handle extra tables */
-    num_of_cases--;
-    while(num_of_cases > 0)
-    {
+        if (t.addTable() != SUCCESS)
+            return ERROR;
+    
+        /* Find the words */
+        if (t.findAllWords() != SUCCESS)
+            return ERROR;
         
+        /* Add table to vector */
+        tables.push_back(t);
+        
+        num_of_cases--;
     }
     
-    cout << "Hello, World!\n";
+    /* Print all tables */
+    for (int i = 0; i < tables.size(); i++) {
+        cout << endl;
+        tables[i].print();
+    }
     return 0;
 }

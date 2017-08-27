@@ -29,11 +29,11 @@ class Table {
     void stringBuilder(std::vector<char> word, Coordinates coords);
     bool isValidChar(char c);
     bool borderCheck(int row, int column);
-    bool sorter(const std::string& a, const std::string& b);
+    static bool sorter(const std::string& a, const std::string& b);
     
 public:
     Table(int dimension) { dim = dimension; matrix = new char[dimension*dimension]; word_list.reserve(100); }
-    ~Table() { delete[] matrix; }
+//    ~Table() { delete[] matrix; }
     int addTable();
     int findAllWords();
     void setVal(int row, int column, char value);
