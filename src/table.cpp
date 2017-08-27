@@ -40,10 +40,23 @@ int Table::addTable()
     return SUCCESS;
 }
 
-{
-    return CONTINUE;
-}
 
+int Table::findAllWords()
+{
+    
+    /* Loop through every character in the matrix */
+    for (int i = 0; i < dim*dim; i++) {
+        /* Create new vector and pass it into stringBuilder */
+        vector<char> word;
+
+        /* Call stringBuilder on every position in the matrix */
+        stringBuilder(word, {i/dim, i%dim});
+
+        resetTable();
+    }
+    
+    return SUCCESS;
+}
 
 
 void Table::stringBuilder(vector<char> word, Coordinates coords)

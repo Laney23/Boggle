@@ -11,6 +11,8 @@
 
 
 #include <iostream>
+#include <vector>
+#include <numeric>
 #include "base.hpp"
 
 
@@ -32,6 +34,7 @@ public:
     Table(int dimension) { dim = dimension; matrix = new char[dimension*dimension]; word_list.reserve(100); }
     ~Table() { delete[] matrix; }
     int addTable();
+    int findAllWords();
     void setVal(int row, int column, char value);
     char getVal(int row, int column);
 };
