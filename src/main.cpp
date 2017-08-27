@@ -7,8 +7,8 @@
 //
 
 #include <iostream>
-#include "base.hpp"
-#include "table.hpp"
+#include "../include/base.hpp"
+#include "../include/table.hpp"
 
 using namespace std;
 

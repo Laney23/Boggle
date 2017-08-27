@@ -6,7 +6,7 @@
 //  Copyright © 2017 Aginor. All rights reserved.
 //
 
-#include "table.hpp"
+#include "../include/table.hpp"
 
 using namespace std;
 
