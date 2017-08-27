@@ -26,6 +26,7 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OBJS) -o $(TARGET)
 
 dirs: 
+	mkdir -p $(BIN_DIR)
 	mkdir -p $(BUILD_DIR)
 
 # Build object files and put in build directory
