@@ -102,9 +102,9 @@ Coordinates Table::findNeighbor(int row, int column)
 }
 
 
-bool Table::borderCheck(int row, int column, int dim)
+bool Table::borderCheck(int row, int column)
 {
-    return (row >= 0 && row <= dim && column >= 0 && column < dim);
+    return (row >= 0 && row < dim && column >= 0 && column < dim);
 }
 
 

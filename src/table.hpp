@@ -27,7 +27,7 @@ class Table {
     int stringBuilder(std::string *str, Coordinates coords);
     char *matrix;
     bool isValidChar(char c);
-    bool borderCheck(int row, int column, int dim);
+    bool borderCheck(int row, int column);
     
 public:
     Table(int dimension) { dim = dimension; matrix = new char[dimension*dimension]; word_list.reserve(100); }
