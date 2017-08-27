@@ -14,12 +14,19 @@
 #include "base.hpp"
 
 
+struct Element {
+    char c;
+    bool seen;
+};
+
 class Table {
     int dim;
-    char *matrix;
+    Element *matrix;
+    char findNeighbor(int row, int column);
+    void resetTable();
     
 public:
-    Table(int dimension) { dim = dimension; matrix = new char[dimension*dimension]; }
+    Table(int dimension) { dim = dimension; matrix = new Element[dimension*dimension]; }
     ~Table() { delete[] matrix; }
     int addTable();
     void setVal(int row, int column, char value);
