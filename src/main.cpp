@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "base.hpp"
+#include "table.hpp"
 
 using namespace std;
 
@@ -34,9 +35,8 @@ int main(int argc, const char * argv[]) {
         return SUCCESS;
     
     /* Take in blank line */
-    char blank_line;
-    cin >> blank_line;
-    if (blank_line != '\n')
+    cin.ignore();
+    if (cin.get() != '\n')
     {
         cout << "You must enter a blank line following the number of cases.\n";
         return ERROR;
@@ -61,9 +61,17 @@ int main(int argc, const char * argv[]) {
         return SUCCESS;
     
     /* Take in the matrix */
-    
+    cin.ignore();
+    Table *t = new Table(dimension);
+    if (t->addTable() != SUCCESS)
+        return ERROR;
     
     /* Handle extra tables */
+    num_of_cases--;
+    while(num_of_cases > 0)
+    {
+        
+    }
     
     cout << "Hello, World!\n";
     return 0;

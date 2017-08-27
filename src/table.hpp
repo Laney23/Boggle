@@ -15,11 +15,15 @@
 
 
 class Table {
-    int dimension;
+    int dim;
+    char *matrix;
     
 public:
-    Table(int d) { dimension = d; }
+    Table(int dimension) { dim = dimension; matrix = new char[dimension*dimension]; }
+    ~Table() { delete[] matrix; }
     int addTable();
+    void setVal(int row, int column, char value);
+    char getVal(int row, int column);
 };
 
 #endif /* table_hpp */
