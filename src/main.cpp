@@ -37,8 +37,9 @@ int main(int argc, const char * argv[]) {
     vector<Table> tables;
     while (num_of_cases > 0) {
         /* Take in blank line */
-        cin.ignore();
-        if (cin.get() != '\n')
+        string line;
+        getline(cin, line);
+        if (!line.empty())
         {
             cout << "You must enter a blank line following the number of cases.\n";
             return ERROR;
