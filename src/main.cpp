@@ -13,7 +13,7 @@
 using namespace std;
 
 
-int main(int argc, const char * argv[]) {
+int main() {
     /* Take user input for number of cases */
     /* Design choice: use an int and check for negative values explicitly rather than using an uint and casting
                                 a negative to 2's compliment.
@@ -82,5 +82,6 @@ int main(int argc, const char * argv[]) {
             cout << endl;
         tables[i].print();
     }
+    
     return 0;
 }
