@@ -5,6 +5,7 @@ BUILD_DIR = build
 SRC_DIR = src
 INC_DIR = include
 CXXFLAGS = -Wall -g -std=c++11
+MKDIR_P = mkdir -p
 
 # Get all source files
 SRCS := $(shell find $(SRC_DIR) -name *.cpp)
@@ -26,8 +27,8 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OBJS) -o $(TARGET)
 
 dirs: 
-	mkdir -p $(BIN_DIR)
-	mkdir -p $(BUILD_DIR)
+	${MKDIR_P} $(BIN_DIR)
+	${MKDIR_P} $(BUILD_DIR)
 
 # Build object files and put in build directory
 $(BUILD_DIR)/%.o: %.cpp
