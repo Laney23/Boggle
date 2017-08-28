@@ -1,10 +1,10 @@
-//
-//  main.cpp
-//  boggle
-//
-//  Created by Josh Laney on 8/26/17.
-//  Copyright © 2017 Aginor. All rights reserved.
-//
+/*
+*  main.cpp
+*  boggle
+*
+*  Created by Josh Laney on 8/26/17.
+*  Copyright © 2017 Aginor. All rights reserved.
+*/
 
 #include <iostream>
 #include "../include/base.hpp"
@@ -34,16 +34,16 @@ int main(int argc, const char * argv[]) {
     else if (num_of_cases == 0)
         return SUCCESS;
     
-    /* Take in blank line */
-    cin.ignore();
-    if (cin.get() != '\n')
-    {
-        cout << "You must enter a blank line following the number of cases.\n";
-        return ERROR;
-    }
-    
     vector<Table> tables;
     while (num_of_cases > 0) {
+        /* Take in blank line */
+        cin.ignore();
+        if (cin.get() != '\n')
+        {
+            cout << "You must enter a blank line following the number of cases.\n";
+            return ERROR;
+        }
+        
         /* Take in N, the size of the matrix */
         int dimension;
         if (!(cin >> dimension))
