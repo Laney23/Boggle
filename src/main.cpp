@@ -62,7 +62,6 @@ int main(int argc, const char * argv[]) {
         /* Take in the matrix */
         cin.ignore();
         Table t = Table(dimension);
-    
         if (t.addTable() != SUCCESS)
             return ERROR;
     
