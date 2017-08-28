@@ -32,11 +32,13 @@ dirs:
 
 # Build object files and put in build directory
 $(BUILD_DIR)/%.o: %.cpp
+	dirs
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Place dependency files in build directory
 # automatically generate dependency rules
 $(BUILD_DIR)/%.d: %.cpp
+	dirs
 	$(CXX) $(CXXFLAGS) -MF"$@" -MG -MM -MP -MT"$@" -MT"$(OBJS)" "$<"
 # -MF  write the generated dependency rule to a file
 # -MG  assume missing headers will be generated and don't stop with an error
