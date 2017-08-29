@@ -8,6 +8,7 @@
 
 #include "../include/table.hpp"
 
+
 using namespace std;
 
 
@@ -28,14 +29,8 @@ int Table::addTable()
         /* Take in all columns */
         for (int column = 0; column < dim; column++)
         {
-            /* Make sure valid input from the user */
-            if (isValidChar(tolower(line[column])))
-                setVal(row, column, tolower(line[column]));
-            else
-            {
-                cout << "Invalid character input.\n";
-                return ERROR;
-            }
+            /* No input validation is necessary */
+            setVal(row, column, line[column]);
         }
         /* Skip '\n' */
         cin.ignore();
@@ -56,7 +51,8 @@ int Table::findAllWords()
 {
     
     /* Loop through every character in the matrix */
-    for (int i = 0; i < dim*dim; i++) {
+    for (int i = 0; i < dim*dim; i++)
+    {
         /* Create new vector and pass it into stringBuilder */
         vector<char> word;
 
@@ -83,7 +79,7 @@ void Table::stringBuilder(vector<char> word, Coordinates coords)
     vector<Coordinates> all_possible = findNeighbors(coords.row, coords.column);
     
     /* Base case: if there are no other possibilities and it's more than 2 letters long, add it to the word list */
-    if (all_possible.size() == 0 && word.size() > 2)
+    if (word.size() > 2)
     {
         string str;
         for (auto const& s : word)
@@ -91,7 +87,8 @@ void Table::stringBuilder(vector<char> word, Coordinates coords)
         
         word_list.push_back(str);
 
-        return;
+        if (all_possible.size() == 0)
+            return;
     }
     
     /* Call stringBuilder on every valid letter */
@@ -179,5 +176,3 @@ vector<Coordinates> Table::findNeighbors(int row, int column)
     
     return return_list;
 } /* function findNeighbors */
-
-
