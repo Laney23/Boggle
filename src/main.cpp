@@ -35,7 +35,8 @@ int main() {
         return SUCCESS;
     
     vector<Table> tables;
-    while (num_of_cases > 0) {
+    while (num_of_cases > 0)
+    {
         /* Take in blank line */
         string line;
         getline(cin, line);
@@ -77,10 +78,11 @@ int main() {
     }
     
     /* Print all tables */
-    for (int i = 0; i < tables.size(); i++) {
-        if (tables[i].getDim() > 0)
-            cout << endl;
+    for (int i = 0; i < tables.size(); i++)
+    {
         tables[i].print();
+        if (num_of_cases > 0)
+            cout << '\n';
     }
     
     return 0;
