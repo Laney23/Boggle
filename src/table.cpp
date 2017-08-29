@@ -123,6 +123,7 @@ void Table::print()
 {
     /* Sort by length alphabetically */
     sort(word_list.begin(), word_list.end(), sorter);
+    word_list.erase( unique( word_list.begin(), word_list.end() ), word_list.end() );
 
     /* Print all words */
     for (int i = 0; i < word_list.size(); i++)
